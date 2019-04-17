@@ -1,0 +1,14 @@
+{
+  "name": "markdown-editor",
+  "version": "0.0.0",
+  "description": "university task",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Jouni Sunnari",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
