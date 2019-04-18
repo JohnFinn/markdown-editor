@@ -9,6 +9,7 @@
   "author": "Jouni Sunnari",
   "license": "GPL-2.0",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "yargs": "^13.2.2"
   }
 }

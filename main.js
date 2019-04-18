@@ -5,4 +5,16 @@ app.use(function(request, response, next) {
     next();
 });
 
-app.listen(3000);
+require('yargs')
+    .command('serve [port]',  'start the server',
+        (yargs) => { yargs
+            .positional('port', {
+                describe: 'port to bind on',
+                default: 80,
+                type: 'number'
+            })
+        }, (argv) => {
+            console.info(`start server on :${argv.port}`)
+            app.listen(argv.port);
+        }
+    ).argv;
