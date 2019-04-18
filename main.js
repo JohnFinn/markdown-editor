@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const app = require('express')();
 
 app.use(function(request, response, next) {
