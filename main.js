@@ -2,6 +2,9 @@
 const app = require('express')();
 const api = require('./routers');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 app.use(function(request, response, next) {
     console.log(`${request.connection.remoteAddress}:${request.connection.remotePort}`);
