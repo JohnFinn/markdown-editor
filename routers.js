@@ -44,8 +44,17 @@ router.put('/update/:id([0-9a-f]{24})', bodyValidator, function(request, respons
     })
 })
 
-router.post('/new', function(request, response) {
-    new Document({})
+router.post('/new', bodyValidator, function(request, response) {
+    let doc = new Document(request.body)
+    doc.save(function (err, doc) {
+        if (err) {
+            console.error(err)
+            response.sendStatus(500)
+        } else {
+            console.log(`created ${doc._id}`)
+            response.json({id: doc._id})
+        }
+    })
 })
 
 module.exports = router
