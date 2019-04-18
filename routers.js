@@ -13,8 +13,11 @@ router.get('/range/:from(\\d+)/:amount(\\d+)', function(request, response) {
     })
 })
 
-router.get('/one/:id(\\d+)', function(request, response) {
-    response.send('### Markdown\ndocument\n')
+router.get('/one/:id([0-9a-f]{24})', function(request, response) {
+    Document.findById(request.params.id)
+    .then(function(docs){
+        response.json(docs);
+    });
 })
 
 router.put('/update/:id(\\d+)', function(request, response) {
