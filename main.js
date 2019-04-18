@@ -41,7 +41,7 @@ require('yargs')
             db.once('open', function() {
                 console.log(`successfully connected to ${argv.database}`)
                 console.log(`start server on port ${argv.port}`)
-                app.listen(argv.port);
+                app.listen(argv.port)
             });
         }
     ).argv;
