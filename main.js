@@ -1,15 +1,15 @@
 #!/usr/bin/node
-const app = require('express')();
-const api = require('./routers');
-const mongoose = require('mongoose');
+const app = require('express')()
+const api = require('./routers')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
 app.use(function(request, response, next) {
-    console.log(`${request.connection.remoteAddress}:${request.connection.remotePort}`);
-    next();
-});
+    console.log(`${request.connection.remoteAddress}:${request.connection.remotePort}`)
+    next()
+})
 
 app.use('/', api)
 
@@ -36,15 +36,15 @@ require('yargs')
             mongoose.connect(argv.database, {
                 useNewUrlParser: true,
                 connectTimeoutMS: argv.timeout,
-            });
-            var db = mongoose.connection;
+            })
+            var db = mongoose.connection
             db.on('error', function() {
                 console.log(`unable to connect to ${argv.database}`)
-            });
+            })
             db.once('open', function() {
                 console.log(`successfully connected to ${argv.database}`)
                 console.log(`start server on port ${argv.port}`)
                 app.listen(argv.port)
-            });
+            })
         }
-    ).argv;
+    ).argv
