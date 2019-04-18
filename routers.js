@@ -7,6 +7,12 @@ const schema = Joi.object().keys({
     content: Joi.string(),
 })
 
+function bodyValidator(request, response, next) {
+    const result = Joi.validate(request.body, schema)
+    if (result.error === null) next()
+    else response.sendStatus(409)
+}
+
 router = express.Router()
 
 router.get('/range/:from(\\d+)/:amount(\\d+)', function(request, response) {
@@ -26,28 +32,20 @@ router.get('/one/:id([0-9a-f]{24})', function(request, response) {
     })
 })
 
-router.put('/update/:id([0-9a-f]{24})',
-    // body validator
-    function(request, response, next) {
-        const result = Joi.validate(request.body, schema)
-        if (result.error === null) next()
-        else response.sendStatus(409)
-    },
-    function(request, response) {
-        Document.updateOne({_id: request.params.id}, request.body, function(err) {
-            if (err) {
-                console.error(err)
-                response.sendStatus(500)
-            } else {
-                console.log('successfully updated')
-                response.sendStatus(202)
-            }
-        })
-    }
-)
+router.put('/update/:id([0-9a-f]{24})', bodyValidator, function(request, response) {
+    Document.updateOne({_id: request.params.id}, request.body, function(err) {
+        if (err) {
+            console.error(err)
+            response.sendStatus(500)
+        } else {
+            console.log('successfully updated')
+            response.sendStatus(202)
+        }
+    })
+})
 
 router.post('/new', function(request, response) {
-    response.send('doc inserted with id=')
+    new Document({})
 })
 
 module.exports = router
