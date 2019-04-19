@@ -1,6 +1,14 @@
 Vue.component( 'entry', {
     props: ['title', 'id'],
-    template: '<div style="margin: 1px"> {{title}} </div>'
+    template: '' +
+        '<div style="background-color: #ccc;" class="row my-1">' +
+            '<div style="font-size: 20;" class="col-11">' +
+                '{{title}}' +
+            '</div>' +
+            '<div style="background-color: #bbb" class="col-1">' +
+                'delete' +
+            '</div>' +
+        '</div>'
 })
 
 class Document {
