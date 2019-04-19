@@ -9,7 +9,6 @@ export default {
     name: 'StickyButton',
     props: {
         title: String
-        // link: String,
     }
 }
 </script>

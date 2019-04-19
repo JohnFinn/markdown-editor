@@ -13,6 +13,7 @@ app.use(function(request, response, next) {
 
 app.use('/', api)
 
+// noinspection BadExpressionStatementJS
 require('yargs')
     .command('serve [port] [database] [timeout]',  'start the server',
         (yargs) => { yargs
