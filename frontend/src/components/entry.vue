@@ -1,5 +1,5 @@
 <template>
-<div style="background-color: #ccc;" class="row my-1">
+<div style="background-color: #ccc;" class="row my-1 mx-0">
     <div class="col-11">
         {{title}}
     </div>
