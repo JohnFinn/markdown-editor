@@ -5,11 +5,15 @@
       v-bind:title="item.title"
       v-bind:id="item.id"
     />
+    <StickyButton
+        v-bind:title="btn"
+    />
   </div>
 </template>
 
 <script>
-import entry from './components/entry.vue'
+import entry from './components/entry.vue';
+import StickyButton from './components/StickyButton.vue';
 
 class Document {
   constructor(id, title) {
@@ -21,7 +25,8 @@ class Document {
 export default {
   name: 'app',
   components: {
-    entry
+    entry,
+    StickyButton
   },
   data() { return {
     documents: [
@@ -33,7 +38,8 @@ export default {
       new Document('abcd', "plz don't change this"),
       new Document('abcd', "Forgot what it's about"),
       new Document('abcd', "Skip me"),
-    ]
+    ],
+    btn: 'New'
   }}
 }
 </script>
