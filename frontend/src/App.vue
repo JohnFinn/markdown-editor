@@ -7,6 +7,7 @@
     />
     <StickyButton
         v-bind:title="btn"
+        @click.native="createNew"
     />
   </div>
 </template>
@@ -28,6 +29,11 @@ export default {
     entry,
     StickyButton
   },
+  methods: {
+    createNew: function () {
+      alert('hello world')
+    }
+  },
   data() { return {
     documents: [
       new Document('abcd', "hello world"),
@@ -39,7 +45,7 @@ export default {
       new Document('abcd', "Forgot what it's about"),
       new Document('abcd', "Skip me"),
     ],
-    btn: 'New'
+    btn: '+',
   }}
 }
 </script>
