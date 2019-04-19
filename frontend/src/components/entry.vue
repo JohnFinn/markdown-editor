@@ -1,9 +1,9 @@
 <template>
 <div style="background-color: #ccc;" class="row my-1 mx-0">
-    <div class="col-11">
+    <div class="col-11" v-on:click="title_function(id)">
         {{title}}
     </div>
-    <div style="background-color: #bbb" class="col-1">
+    <div style="background-color: #bbb" class="col-1" v-on:click="delete_function(id)">
         delete
     </div>
 </div>
@@ -12,8 +12,10 @@
 export default {
     name: 'entry',
     props: {
-        title: String
-        // link: String,
+        title: String,
+        id: String,
+        delete_function: Function,
+        title_function: Function
     }
 }
 </script>

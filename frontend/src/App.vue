@@ -4,6 +4,8 @@
       v-for="item in documents"
       v-bind:title="item.title"
       v-bind:id="item.id"
+      v-bind:delete_function="createNew"
+      v-bind:title_function="createNew"
     />
     <StickyButton
         v-bind:title="btn"
@@ -13,7 +15,7 @@
 </template>
 
 <script>
-import entry from './components/entry.vue';
+import  entry from './components/entry.vue';
 import StickyButton from './components/StickyButton.vue';
 
 class Document {
@@ -31,7 +33,7 @@ export default {
   },
   methods: {
     createNew: function () {
-      alert('hello world')
+      alert(arguments[0])
     }
   },
   data() { return {
