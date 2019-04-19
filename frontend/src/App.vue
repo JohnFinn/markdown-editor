@@ -45,7 +45,7 @@ export default {
       new Document('abcd', "Forgot what it's about"),
       new Document('abcd', "Skip me"),
     ],
-    btn: '+',
+    btn: 'New',
   }}
 }
 </script>
