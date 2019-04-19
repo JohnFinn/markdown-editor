@@ -32,8 +32,8 @@ export default {
     StickyButton
   },
   methods: {
-    createNew: function () {
-      alert(arguments[0])
+    createNew: function (id) {
+        window.location = '/edit?id=' + id;
     }
   },
   data() { return {
