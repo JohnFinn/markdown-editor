@@ -2,7 +2,12 @@
     <div>
     <div class="row mx-0">
         <div class="col-10 bg-secondary">
-            <input class="form-control form-control-sm" type="text" placeholder="Large input">
+            <input
+                class="form-control form-control-sm"
+                type="text"
+                placeholder="Large input"
+                v-bind:value="title"
+            >
         </div>
         <div
             style="background-color: #787"
@@ -23,13 +28,17 @@
         </div>
     </div>
     <div class="row mx-0">
-        <div class="col-6 bg-secondary">markdown<br/></div>
+        <div class="col-6 bg-secondary">
+            {{ markdown }}
+        </div>
         <div class="col-6 bg-dark text-light">html</div>
     </div>
     </div>
 </template>
 
 <script>
+import { getOne } from "./ApiClient"
+
 export default {
     name: "markdownEditor",
     methods: {
@@ -52,10 +61,17 @@ export default {
             arg.target.style.backgroundColor = '#787'
             arg.target.style.color = '#000'
         }
+    },
+    data() { return {
+        markdown: '',
+        title: ''
+    }},
+    async mounted() {
+        let id = new URLSearchParams(window.location.search).get('id')
+        let doc = await getOne(id)
+        this.markdown = doc.content
+        this.title = doc.title
     }
 }
-
-var a = new URLSearchParams(window.location.search).get('id')
-console.log(a)
 
 </script>
