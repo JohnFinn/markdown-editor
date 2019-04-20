@@ -14,6 +14,7 @@
             class="col-1"
             @mouseover="saveHover"
             @mouseleave="saveLeave"
+            @mousedown="save"
         >
             Save
         </div>
@@ -44,6 +45,9 @@ export default {
     methods: {
         back() {
             window.location = '/'
+        },
+        save() {
+            alert('TODO implement save')
         },
         backHover(arg) {
             arg.target.style.backgroundColor = '#558'
