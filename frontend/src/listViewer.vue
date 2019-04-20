@@ -4,12 +4,12 @@
       v-for="item in documents"
       v-bind:title="item.title"
       v-bind:id="item.id"
-      v-bind:delete_function="createNew"
-      v-bind:title_function="createNew"
+      v-bind:delete_function="sampleFn"
+      v-bind:title_function="open"
     />
     <StickyButton
         v-bind:title="btn"
-        @click.native="createNew"
+        @click.native="createNewAndOpen"
     />
   </div>
 </template>
@@ -17,7 +17,7 @@
 <script>
 import entry from './components/entry.vue';
 import StickyButton from './components/StickyButton.vue';
-import {getRange} from './ApiClient.js';
+import {getRange, createNew} from './ApiClient.js';
 
 export default {
   name: 'app',
@@ -26,8 +26,14 @@ export default {
     StickyButton
   },
   methods: {
-    createNew: function (id) {
-        window.location = '/edit?id=' + id;
+    sampleFn: function (id) {
+      alert('hello world')
+    },
+    createNewAndOpen() {
+      window.location = '/edit?id=' + createNew()
+    },
+    open(id) {
+      window.location = '/edit?id=' + id
     }
   },
   data() { return {
