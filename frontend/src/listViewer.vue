@@ -29,16 +29,19 @@ export default {
     sampleFn: function (id) {
       alert('hello world')
     },
-    createNewAndOpen() {
-      window.location = '/edit?id=' + createNew()
+    async createNewAndOpen() {
+      window.location = '/edit?id=' + await createNew()
     },
     open(id) {
       window.location = '/edit?id=' + id
     }
   },
   data() { return {
-    documents: getRange(0, 100),
+    documents: [],
     btn: 'New',
-  }}
+  }},
+  async mounted() {
+    this.documents = await getRange(0, 100)
+  }
 }
 </script>

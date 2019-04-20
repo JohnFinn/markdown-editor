@@ -6,33 +6,58 @@ export class Document {
     }
 }
 
-export class DocumentDescriptor {
-    constructor(id, title) {
-        this.id = id
-        this.title = title
-    }
+export async function getOne(id) {
+    let result = await getAsync(`api/one/${id}`)
+    return JSON.parse(result)
 }
 
-export function getOne(id) {
-    // return new Document('abcd', )
+export async function getRange(from, count) {
+    let result = await getAsync(`api/range/${from}/${count}`)
+    return JSON.parse(result)
 }
 
-export function getRange(from, count) {
-    return [
-        new DocumentDescriptor('abcd', "hello world"),
-        new DocumentDescriptor('abcd', "Very interestign to read"),
-        new DocumentDescriptor('abcd', "Sonewhat interesting"),
-        new DocumentDescriptor('abcd', "Save me to bookmarks"),
-        new DocumentDescriptor('abcd', "Empty document"),
-        new DocumentDescriptor('abcd', "plz don't change this"),
-        new DocumentDescriptor('abcd', "Forgot what it's about"),
-        new DocumentDescriptor('abcd', "Skip me")
-    ]
-}
-
-export function createNew() {
-    return '123456789012345678901234'
+export async function createNew() {
+    let result = await postAsync(`api/new`, '')
+    return JSON.parse(result).id;
 }
 
 export function update(id, newVersion) {
+    return putAsync(`api/put`, newVersion)
+}
+
+function getAsync(url) {
+    return makeRequest('GET', url, '')
+}
+
+function postAsync(url, payload) {
+    return makeRequest('POST', url, payload)
+}
+
+function putAsync(url, payload) {
+    return makeRequest('PUT', url, payload)
+}
+
+function makeRequest(method, url, payload) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.setRequestHeader('Content-type', 'application/json')
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send(payload);
+    });
 }
