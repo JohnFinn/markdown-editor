@@ -3,7 +3,7 @@
     <entry
       v-for="item in documents"
       v-bind:title="item.title"
-      v-bind:id="item.id"
+      v-bind:id="item._id"
       v-bind:delete_function="sampleFn"
       v-bind:title_function="open"
     />
