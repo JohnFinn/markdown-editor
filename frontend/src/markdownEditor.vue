@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="row mx-0">
-        <div class="col-6 bg-secondary">
+        <div class="col-6 bg-secondary" contenteditable="true">
             {{ markdown }}
         </div>
         <div class="col-6 bg-dark text-light">html</div>
