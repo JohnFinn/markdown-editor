@@ -4,7 +4,7 @@
       v-for="item in documents"
       v-bind:title="item.title"
       v-bind:id="item._id"
-      v-bind:delete_function="sampleFn"
+      v-bind:delete_function="deleteOneAndRefresh"
       v-bind:title_function="open"
     />
     <StickyButton
@@ -17,7 +17,7 @@
 <script>
 import entry from './components/entry.vue';
 import StickyButton from './components/StickyButton.vue';
-import {getRange, createNew} from './ApiClient.js';
+import {getRange, createNew, deleteOne} from './ApiClient.js';
 
 export default {
   name: 'app',
@@ -26,8 +26,9 @@ export default {
     StickyButton
   },
   methods: {
-    sampleFn: function (id) {
-      alert('hello world')
+    async deleteOneAndRefresh(id) {
+      await deleteOne(id)
+      this.documents = await getRange(0, 100)
     },
     async createNewAndOpen() {
       window.location = '/edit?id=' + await createNew()

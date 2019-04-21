@@ -17,7 +17,7 @@ export async function getRange(from, count) {
 }
 
 export async function createNew() {
-    let result = await postAsync(`api/new`, '')
+    let result = await postAsync(`api/new`, {})
     return JSON.parse(result).id;
 }
 
@@ -25,8 +25,12 @@ export function update(id, newVersion) {
     return putAsync(`api/update/${id}`, newVersion)
 }
 
+export function deleteOne(id) {
+    return deleteAsync(`api/${id}`)
+}
+
 function getAsync(url) {
-    return makeRequest('GET', url, '')
+    return makeRequest('GET', url, {})
 }
 
 function postAsync(url, payload) {
@@ -35,6 +39,10 @@ function postAsync(url, payload) {
 
 function putAsync(url, payload) {
     return makeRequest('PUT', url, payload)
+}
+
+function deleteAsync(url) {
+    return makeRequest('DELETE', url, {})
 }
 
 function makeRequest(method, url, payload) {
