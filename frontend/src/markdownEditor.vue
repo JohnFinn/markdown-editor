@@ -3,6 +3,7 @@
     <div class="row mx-0">
         <div class="col-10 bg-secondary">
             <input
+                id="title"
                 class="form-control form-control-sm"
                 type="text"
                 placeholder="Large input"
@@ -47,7 +48,7 @@ export default {
         },
         save() {
             update(this.id, {
-                title: this.title,
+                title: document.getElementById("title").value,
                 content: document.getElementById("editor").innerText
             })
         },
