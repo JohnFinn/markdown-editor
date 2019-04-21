@@ -17,7 +17,7 @@ export async function getRange(from, count) {
 }
 
 export async function createNew() {
-    let result = await postAsync(`api/new`, {})
+    let result = await postAsync(`api/new`, {title:'untitled document', content:'# write your markdown here'})
     return JSON.parse(result).id;
 }
 
