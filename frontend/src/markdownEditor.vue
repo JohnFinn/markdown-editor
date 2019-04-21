@@ -40,7 +40,7 @@
 
 <script>
 import marked from 'marked'
-import { getOne } from "./ApiClient"
+import { getOne, update } from "./ApiClient"
 
 export default {
     name: "markdownEditor",
@@ -49,7 +49,10 @@ export default {
             window.location = '/'
         },
         save() {
-            alert('TODO implement save')
+            update(this.id, {
+                title: this.title,
+                content: document.getElementById("editor").innerText
+            })
         },
         backHover(arg) {
             arg.target.style.backgroundColor = '#558'
@@ -71,11 +74,11 @@ export default {
     data() { return {
         markdown: '',
         title: '',
-        compiled: ''
+        compiled: '',
+        id: new URLSearchParams(window.location.search).get('id')
     }},
     async mounted() {
-        let id = new URLSearchParams(window.location.search).get('id')
-        let doc = await getOne(id)
+        let doc = await getOne(this.id)
         this.markdown = doc.content
         this.title = doc.title
         this.compiled = marked(doc.content)
