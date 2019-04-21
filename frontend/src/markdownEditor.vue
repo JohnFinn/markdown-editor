@@ -29,11 +29,8 @@
         </div>
     </div>
     <div class="row mx-0">
-        <div class="col-6 bg-secondary" contenteditable="true" id="editor">
-            {{ markdown }}
-        </div>
-        <div class="col-6 bg-dark text-light" id="compiled" v-html="compiled">
-        </div>
+        <div class="col-6 bg-secondary" contenteditable="true" id="editor"></div>
+        <div class="col-6 bg-dark text-light" v-html="compiled"></div>
     </div>
     </div>
 </template>
@@ -72,17 +69,16 @@ export default {
         }
     },
     data() { return {
-        markdown: '',
         title: '',
         compiled: '',
         id: new URLSearchParams(window.location.search).get('id')
     }},
     async mounted() {
         let doc = await getOne(this.id)
-        this.markdown = doc.content
         this.title = doc.title
         this.compiled = marked(doc.content)
         let outerThis = this
+        document.getElementById('editor').innerText = doc.content
         document.getElementById("editor").addEventListener("input", function() {
             outerThis.compiled = marked(document.getElementById("editor").innerText)
         }, false);
