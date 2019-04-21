@@ -58,6 +58,6 @@ function makeRequest(method, url, payload) {
                 statusText: xhr.statusText
             });
         };
-        xhr.send(payload);
+        xhr.send(JSON.stringify(payload));
     });
 }
