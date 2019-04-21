@@ -1,7 +1,7 @@
 <template>
 <div style="background-color: #ccc;" class="row my-1 mx-0">
     <div
-        class="col-11"
+        class="col-9 col-sm-10 col-md-11 col-lg-11"
         v-on:click="title_function(id)"
         @mouseenter="title_hover"
         @mouseleave="title_leave"
@@ -10,7 +10,7 @@
     </div>
     <div
         style="background-color: #bbb"
-        class="col-1 del"
+        class="col-3 col-sm-2 col-md-1 del"
         v-on:click="delete_function(id)"
         @mouseenter="delete_hover"
         @mouseleave="delete_leave"
