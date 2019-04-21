@@ -32,12 +32,14 @@
         <div class="col-6 bg-secondary" contenteditable="true">
             {{ markdown }}
         </div>
-        <div class="col-6 bg-dark text-light">html</div>
+        <div class="col-6 bg-dark text-light" id="compiled">
+        </div>
     </div>
     </div>
 </template>
 
 <script>
+import marked from 'marked'
 import { getOne } from "./ApiClient"
 
 export default {
@@ -68,13 +70,14 @@ export default {
     },
     data() { return {
         markdown: '',
-        title: ''
+        title: '',
     }},
     async mounted() {
         let id = new URLSearchParams(window.location.search).get('id')
         let doc = await getOne(id)
         this.markdown = doc.content
         this.title = doc.title
+        document.getElementById("compiled").innerHTML = marked(this.markdown)
     }
 }
 
