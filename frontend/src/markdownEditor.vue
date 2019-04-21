@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="row mx-0">
-        <div class="col-6 bg-secondary" contenteditable="true">
+        <div class="col-6 bg-secondary" contenteditable="true" id="editor">
             {{ markdown }}
         </div>
         <div class="col-6 bg-dark text-light" id="compiled" v-html="compiled">
@@ -79,6 +79,10 @@ export default {
         this.markdown = doc.content
         this.title = doc.title
         this.compiled = marked(doc.content)
+        let outerThis = this
+        document.getElementById("editor").addEventListener("input", function() {
+            outerThis.compiled = marked(document.getElementById("editor").innerText)
+        }, false);
     }
 }
 
