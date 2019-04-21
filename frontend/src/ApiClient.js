@@ -22,7 +22,7 @@ export async function createNew() {
 }
 
 export function update(id, newVersion) {
-    return putAsync(`api/put`, newVersion)
+    return putAsync(`api/update/${id}`, newVersion)
 }
 
 function getAsync(url) {
