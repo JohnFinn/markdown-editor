@@ -32,7 +32,7 @@
         <div class="col-6 bg-secondary" contenteditable="true">
             {{ markdown }}
         </div>
-        <div class="col-6 bg-dark text-light" id="compiled">
+        <div class="col-6 bg-dark text-light" id="compiled" v-html="compiled">
         </div>
     </div>
     </div>
@@ -71,13 +71,14 @@ export default {
     data() { return {
         markdown: '',
         title: '',
+        compiled: ''
     }},
     async mounted() {
         let id = new URLSearchParams(window.location.search).get('id')
         let doc = await getOne(id)
         this.markdown = doc.content
         this.title = doc.title
-        document.getElementById("compiled").innerHTML = marked(this.markdown)
+        this.compiled = marked(doc.content)
     }
 }
 
