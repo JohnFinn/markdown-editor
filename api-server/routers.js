@@ -57,4 +57,17 @@ router.post('/new', bodyValidator, function(request, response) {
     })
 })
 
+router.delete('/:id([0-9a-f]{24})', function (request, response) {
+    Document.deleteOne({_id: request.params.id})
+        .then(function (result) {
+            if (result.ok !== 1){
+                console.error(`error deleting ${request.params.id}`)
+                response.sendStatus(500)
+                return
+            }
+            console.log(`deleted ${request.params.id}`)
+            response.sendStatus(200)
+        })
+})
+
 module.exports = router
