@@ -1,6 +1,6 @@
 <template>
     <div>
-    <div class="row mx-0">
+    <div class="row mx-0 fixed-top">
         <div class="col-10 bg-secondary">
             <input
                 id="title"
@@ -29,7 +29,7 @@
             Back
         </div>
     </div>
-    <div class="row mx-0">
+    <div class="row mx-0 mt-4">
         <div class="col-6" contenteditable="true" id="editor"></div>
         <div class="col-6" v-html="compiled"></div>
     </div>
