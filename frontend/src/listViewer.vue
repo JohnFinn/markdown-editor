@@ -27,8 +27,10 @@ export default {
   },
   methods: {
     async deleteOneAndRefresh(id) {
-      await deleteOne(id)
-      this.documents = await getRange(0, 100)
+      if (confirm('do you really want to delete this document?')){
+        await deleteOne(id)
+        this.documents = await getRange(0, 100)
+      }
     },
     async createNewAndOpen() {
       window.location = '/edit?id=' + await createNew()
